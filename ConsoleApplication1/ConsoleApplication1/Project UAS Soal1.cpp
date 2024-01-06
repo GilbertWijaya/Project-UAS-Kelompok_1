@@ -18,6 +18,19 @@ void tampil(int tampilMx[][3], int baris, int kolom) {
 
 }
 
+int Determinan(int MatrixDet[][3]) {
+	int det;
+	det =
+		(MatrixDet[0][0] * MatrixDet[1][1] * MatrixDet[2][2])
+		+ (MatrixDet[0][1] * MatrixDet[1][2] * MatrixDet[2][0])
+		+ (MatrixDet[0][2] * MatrixDet[1][0] * MatrixDet[2][1])
+		- (MatrixDet[0][2] * MatrixDet[1][1] * MatrixDet[2][0])
+		- (MatrixDet[0][0] * MatrixDet[1][2] * MatrixDet[2][1])
+		- (MatrixDet[0][1] * MatrixDet[1][0] * MatrixDet[2][2]);
+	return det;
+
+}
+
 void tampilKov(float tampilMx[][3], int baris, int kolom) {
 
 
@@ -99,20 +112,11 @@ void main() {
 	cout << "===================================" << endl;
 	tampil(Matrix, baris, kolom);
 
-	//mecari determinan
-	cout << "===================================" << endl;
-	det =
-		(Matrix[0][0] * Matrix[1][1] * Matrix[2][2])
-		+ (Matrix[0][1] * Matrix[1][2] * Matrix[2][0])
-		+ (Matrix[0][2] * Matrix[1][0] * Matrix[2][1])
-		- (Matrix[0][2] * Matrix[1][1] * Matrix[2][0])
-		- (Matrix[0][0] * Matrix[1][2] * Matrix[2][1])
-		- (Matrix[0][1] * Matrix[1][0] * Matrix[2][2]);
-	cout << "determinan matriks adalah : " << det << endl;
-	cout << "===================================" << endl;
-	cout << "kovalen matriks adalah : " << endl;
-
+	det = Determinan(Matrix);
+	cout << "Determinannya adalah: " << det << '\n';
+	
 	//mencari kovalen
+	cout << "kovalen matriks adalah : " << endl;
 	kovalen[0][0] = (Matrix[1][1] * Matrix[2][2]) - (Matrix[1][2] * Matrix[2][1]);
 	kovalen[0][1] = ((Matrix[1][0] * Matrix[2][2]) - (Matrix[1][2] * Matrix[2][0])) * -1;
 	kovalen[0][2] = (Matrix[1][0] * Matrix[2][1]) - (Matrix[1][1] * Matrix[2][0]);
@@ -132,13 +136,5 @@ void main() {
 	tampilInv(det, baris, kolom, adjoin, invers);
 	cout << "===================================" << endl;
 
-
-
-
-	/*
-
-	selesai boskuuuu :):):):):):)
-
-	*/
 
 }
